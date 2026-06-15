@@ -3,7 +3,7 @@
 This repository contains the one-step full-length mRNA generation code for the method described in Gong et al., *Integrated mRNA sequence optimization using deep learning* (Briefings in Bioinformatics, 2023). Given a protein sequence, the pipeline first optimizes the coding sequence (CDS) with a BiLSTM-CRF codon-selection model, then generates matching 5' UTR and 3' UTR sequences with two fine-tuned mBART models. The final output is a complete transcript design represented as:
 
 ```text
-(5' UTR, optimized CDS, 3' UTR)
+(5' UTR, CDS, 3' UTR)
 ```
 
 The CDS and UTR modules are integrated in `main.py`, so users can run full-length generation from an amino-acid input file with one command.
@@ -125,7 +125,7 @@ ATGGCAGAGCCCAGG...
 The UTR module consumes the optimized CDS and returns:
 
 ```text
-5' UTR + optimized CDS + 3' UTR
+5' UTR + CDS + 3' UTR
 ```
 
 In the current `main.py`, this is printed as a tuple rather than written to a separate file. For batch UTR generation from a CDS file, see `get_full_sequence()` in `UTR.py`.
@@ -137,20 +137,6 @@ The pipeline follows the integrated design idea of Gong et al.:
 - CDS optimization is formulated as sequence labeling. Each amino acid is assigned a codon-box label, and `utils/codonBox.py` converts amino-acid/label pairs back to codons.
 - The CDS sequence is passed to separate encoder-decoder models for 5' UTR and 3' UTR generation.
 - `Codon_Tokenizer_text_bs` tokenizes codon-box representations for the mBART-based UTR models.
-
-## Training
-
-`demo.train.config` is retained as a legacy CDS training template for the BiLSTM-CRF component. The one-step full-length pipeline in `main.py` is primarily intended for decoding with pretrained CDS and UTR models. If retraining is needed, prepare CDS training/dev/test files in the NCRF++-style amino-acid plus codon-box label format and update:
-
-```text
-train_dir=
-dev_dir=
-test_dir=
-model_dir=
-word_emb_dir=
-```
-
-The UTR models are not trained through `main.py`; they are loaded as Hugging Face model directories by `UTR.py`.
 
 ## Citation
 
@@ -167,9 +153,3 @@ If you use this code, please cite:
   year = {2023}
 }
 ```
-
-## License
-
-This project is released under the Apache License 2.0. See `LICENSE` for license information.
-
-Pretrained model weights and other large artifacts should be distributed with an explicit license or release note if they are hosted separately from this source repository.
