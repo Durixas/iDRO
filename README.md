@@ -1,6 +1,6 @@
 # Integrated mRNA Sequence Optimization
 
-This repository contains the one-step full-length mRNA generation code for the method described in Gong et al., *Integrated mRNA sequence optimization using deep learning* (Briefings in Bioinformatics, 2023). Given a protein sequence, the pipeline first optimizes the coding sequence (CDS) with a BiLSTM-CRF codon-selection model, then generates matching 5' UTR and 3' UTR sequences with two fine-tuned mBART models. The final output is a complete transcript design represented as:
+This repository contains the integrated full-length mRNA generation code for the method described in Gong et al., *Integrated mRNA sequence optimization using deep learning* (Briefings in Bioinformatics, 2023). Given a protein sequence, the pipeline first optimizes the coding sequence (CDS) with a BiLSTM-CRF codon-selection model, then generates matching 5' UTR and 3' UTR sequences with two fine-tuned mBART models. The final output is a complete transcript design represented as:
 
 ```text
 (5' UTR, CDS, 3' UTR)
