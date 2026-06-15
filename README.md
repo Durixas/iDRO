@@ -26,7 +26,7 @@ lstmcrf.113.model               # trained CDS model artifact
 
 ## Requirements
 
-The code uses PyTorch for the BiLSTM-CRF CDS optimizer and Hugging Face Transformers for the mBART UTR generators. The core dependencies, based on the `bart_old` environment used for this project, are:
+The code uses PyTorch for the BiLSTM-CRF CDS optimizer and Hugging Face Transformers for the mBART UTR generators. The core dependencies are:
 
 ```bash
 python == 3.8.20
@@ -43,7 +43,7 @@ Example installation:
 pip install "torch==2.4.1" "transformers==4.18.0" "tokenizers==0.12.1" "numpy==1.24.4" "sacremoses==0.1.1"
 ```
 
-If you use CUDA, install the PyTorch build matching your local driver/toolkit. The tested `bart_old` environment used `torch==2.4.1+cu121`.
+If you use CUDA, install the PyTorch build matching your local driver/toolkit. The tested environment used `torch==2.4.1+cu121`.
 
 ## Model Artifacts
 
